@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraFlow — Next-Gen AI Workflow Automation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Glowing & Grid Accents */
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Sticky Header Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-200">
+                        <i class="fa-solid fa-bolt text-lg"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">Aura<span class="text-indigo-500">Flow</span></span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#features" class="hover:text-indigo-400 transition-colors">Features</a>
+                    <a href="#how-it-works" class="hover:text-indigo-400 transition-colors">How It Works</a>
+                    <a href="#testimonials" class="hover:text-indigo-400 transition-colors">Testimonials</a>
+                    <a href="#pricing" class="hover:text-indigo-400 transition-colors">Pricing</a>
+                </nav>
+
+                <!-- CTA Action Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2">Sign In</a>
+                    <a href="#pricing" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-md shadow-indigo-600/30 hover:shadow-indigo-500/50 transition-all duration-200 transform hover:-translate-y-0.5">
+                        Get Started Free
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-900/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
+            <a href="#features" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Features</a>
+            <a href="#how-it-works" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">How It Works</a>
+            <a href="#testimonials" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Testimonials</a>
+            <a href="#pricing" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Pricing</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-2">
+                <a href="#pricing" class="w-full text-center py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-md shadow-indigo-600/30">
+                    Get Started Free
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative pt-16 pb-20 lg:pt-28 lg:pb-32 overflow-hidden bg-grid-pattern">
+            <!-- Ambient Glow Effects -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-[300px] h-[250px] bg-purple-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <!-- Announcement Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-md shadow-inner">
+                    <span class="flex h-2 w-2 rounded-full bg-indigo-400 animate-ping"></span>
+                    <span class="font-semibold text-white">New v2.4 Release:</span> Autonomous AI Agent Pipelines
+                    <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
+                </div>
+
+                <!-- Hero Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] max-w-5xl mx-auto">
+                    Automate your workflow.<br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Scale your business impact.</span>
+                </h1>
+
+                <!-- Hero Subheadline -->
+                <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+                    AuraFlow empowers modern product and engineering teams to orchestrate complex data, automate tedious routines, and deploy self-healing AI workflows in minutes.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base shadow-lg shadow-indigo-600/40 hover:shadow-indigo-500/60 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        Start 14-Day Free Trial
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-base border border-slate-700/80 transition-all duration-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play text-indigo-400 text-xs"></i>
+                        Watch 2-Min Demo
+                    </a>
+                </div>
+
+                <!-- Trust Metrics / Social Proof Bar -->
+                <div class="mt-12 flex items-center justify-center gap-6 text-xs sm:text-sm text-slate-400">
+                    <div class="flex items-center gap-1 text-amber-400">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span>Loved by 10,000+ teams at TechCorp, Velo & Orbit</span>
+                </div>
+
+                <!-- Hero Visual / Mockup Preview -->
+                <div class="mt-14 relative max-w-5xl mx-auto">
+                    <div class="rounded-2xl border border-slate-800/90 bg-slate-900/90 p-2 sm:p-4 shadow-2xl glow-effect backdrop-blur-xl">
+                        <!-- Window Header Bar -->
+                        <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800 mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            </div>
+                            <div class="text-xs text-slate-500 font-mono">auraflow.app/dashboard/live-pipelines</div>
+                            <div class="text-xs text-slate-400"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Active</div>
+                        </div>
+                        
+                        <!-- Graphic Interactive Dashboard Preview -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left p-2 sm:p-4">
+                            <!-- Card 1 -->
+                            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs text-slate-400 font-medium">Active Execution</span>
+                                    <span class="px-2 py-0.5 text-[10px] bg-emerald-500/20 text-emerald-400 rounded-full font-semibold">Live</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">99.98%</p>
+                                <p class="text-xs text-slate-400 mt-1">Uptime reliability over 30 days</p>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
+                                    <div class="bg-emerald-500 h-full w-[98%]"></div>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs text-slate-400 font-medium">Tasks Processed</span>
+                                    <span class="text-indigo-400 text-xs"><i class="fa-solid fa-arrow-trend-up"></i> +28%</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">1,482,900</p>
+                                <p class="text-xs text-slate-400 mt-1">Automated events this month</p>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
+                                    <div class="bg-indigo-500 h-full w-[85%]"></div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs text-slate-400 font-medium">Latency Speed</span>
+                                    <span class="text-purple-400 text-xs"><i class="fa-solid fa-bolt"></i> Ultra Fast</span>
+                                </div>
+                                <p class="text-xl font-bold text-white">12 ms</p>
+                                <p class="text-xs text-slate-400 mt-1">Average pipeline latency</p>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
+                                    <div class="bg-purple-500 h-full w-[92%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section 1: Key Features Grid -->
+        <section id="features" class="py-20 lg:py-28 bg-slate-900/60 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-indigo-400 tracking-widest uppercase">Engineered For Velocity</h2>
+                    <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Everything you need to orchestrate complex workflows</p>
+                    <p class="mt-4 text-slate-400 text-base sm:text-lg">Ditch manual scripts and fragile webhooks. AuraFlow gives you complete control over your operational stack.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-brain text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Autonomous AI Agents</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Deploy smart AI agents that learn from your team's workflow, handle exceptions automatically, and trigger smart actions.</p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-purple-600/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-diagram-project text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Visual Workflow Canvas</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Build multi-step pipelines with an intuitive drag-and-drop interface. Connect apps, condition triggers, and custom logic with zero code.</p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-600/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-plug text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">500+ Native Integrations</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Out-of-the-box connectors for GitHub, Slack, Postgres, Salesforce, OpenAI, AWS, and all your critical software tools.</p>
+                    </div>
+
+                    <!-- Feature Card 4 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-shield-halved text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Enterprise Security</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">SOC-2 Type II certified, end-to-end payload encryption, granular RBAC access controls, and custom audit logging built-in.</p>
+                    </div>
+
+                    <!-- Feature Card 5 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-sky-600/10 border border-sky-500/30 flex items-center justify-center text-sky-400 mb-6 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Real-time Telemetry</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Monitor execution speeds, error rates, and resource allocation in real-time with comprehensive observability charts.</p>
+                    </div>
+
+                    <!-- Feature Card 6 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-pink-600/10 border border-pink-500/30 flex items-center justify-center text-pink-400 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-rotate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Auto-Healing Pipelines</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Intelligent error fallback logic and exponential backoff retries ensure your data flows smoothly without human intervention.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section 2: How It Works -->
+        <section id="how-it-works" class="py-20 lg:py-28 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-indigo-400 tracking-widest uppercase">Simple 3-Step Setup</h2>
+                    <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">How AuraFlow drives results in minutes</p>
+                    <p class="mt-4 text-slate-400 text-base sm:text-lg">No tedious setup required. Get your automated pipelines running in three simple steps.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative flex flex-col items-start">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-600 text-white font-extrabold flex items-center justify-center text-lg mb-6 shadow-md shadow-indigo-600/40">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Connect Your Apps</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Securely authenticate your existing software tools and databases with one-click OAuth integrations.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative flex flex-col items-start">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-600 text-white font-extrabold flex items-center justify-center text-lg mb-6 shadow-md shadow-indigo-600/40">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Define Logic & AI Prompts</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Drag and drop triggers, assign AI processing prompts, and configure filters to handle data exactly how you want.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative flex flex-col items-start">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-600 text-white font-extrabold flex items-center justify-center text-lg mb-6 shadow-md shadow-indigo-600/40">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Deploy & Scale Instantly</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Activate your automated pipeline. AuraFlow monitors executions 24/7 with zero maintenance required.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section 3: Testimonials & Social Proof -->
+        <section id="testimonials" class="py-20 lg:py-28 bg-slate-900/60 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-indigo-400 tracking-widest uppercase">Customer Reviews</h2>
+                    <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Trusted by engineering teams globally</p>
+                    <p class="mt-4 text-slate-400 text-base">Here is what engineering managers and operations leads say about switching to AuraFlow.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "AuraFlow cut our data pipeline setup time by 80%. What used to take our backend engineers weeks now gets deployed in less than two hours."
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-white text-sm">
+                                SC
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Sarah Chen</h4>
+                                <p class="text-xs text-slate-400">VP of Engineering at CloudScale</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "The autonomous AI error recovery is pure magic. We no longer get woken up at 3 AM for broken webhook integrations."
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center font-bold text-white text-sm">
+                                MD
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Marcus Devlin</h4>
+                                <p class="text-xs text-slate-400">Head of Operations at Nexus Tech</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-slate-950/80 border border-slate-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "Incredible product design and execution speed. Our team saved over $40,000 in operational overhead within the first quarter."
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center font-bold text-white text-sm">
+                                EL
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Elena Lopez</h4>
+                                <p class="text-xs text-slate-400">CTO at GrowthMatrix</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section 4: Pricing Tier Section -->
+        <section id="pricing" class="py-20 lg:py-28 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-indigo-400 tracking-widest uppercase">Simple, Transparent Pricing</h2>
+                    <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Pick the plan that fits your growth</p>
+                    <p class="mt-4 text-slate-400 text-base">Start with a 14-day free trial. No credit card required.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <!-- Starter Plan -->
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Starter</h3>
+                            <p class="text-xs text-slate-400 mb-6">Perfect for solo builders and early-stage projects.</p>
+                            <div class="flex items-baseline gap-1 mb-6">
+                                <span class="text-4xl font-extrabold text-white">$29</span>
+                                <span class="text-slate-400 text-sm">/ month</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Up to 10,000 tasks/mo</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> 5 Active AI Workflows</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Standard Support</li>
+                                <li class="flex items-center gap-2 text-slate-500"><i class="fa-solid fa-xmark"></i> Dedicated Account Manager</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="w-full text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm transition-colors">Start Free Trial</a>
+                    </div>
+
+                    <!-- Pro Plan (Featured) -->
+                    <div class="bg-slate-900/90 border-2 border-indigo-500 rounded-2xl p-8 flex flex-col justify-between relative shadow-xl shadow-indigo-600/10">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                            Most Popular
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Pro Team</h3>
+                            <p class="text-xs text-slate-400 mb-6">Designed for scaling product teams & startups.</p>
+                            <div class="flex items-baseline gap-1 mb-6">
+                                <span class="text-4xl font-extrabold text-white">$89</span>
+                                <span class="text-slate-400 text-sm">/ month</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Up to 250,000 tasks/mo</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Unlimited AI Workflows</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Priority 24/7 Slack Support</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Advanced Security Analytics</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="w-full text-center py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-md shadow-indigo-600/30 transition-colors">Start 14-Day Free Trial</a>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Enterprise</h3>
+                            <p class="text-xs text-slate-400 mb-6">Custom scaling and security for large operations.</p>
+                            <div class="flex items-baseline gap-1 mb-6">
+                                <span class="text-4xl font-extrabold text-white">$299</span>
+                                <span class="text-slate-400 text-sm">/ month</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Unlimited Tasks & Events</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Custom SLA & 99.99% Uptime</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Dedicated Solutions Engineer</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Custom On-Prem Deployment</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="w-full text-center py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm transition-colors">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner CTA Section -->
+        <section class="py-16 bg-gradient-to-r from-indigo-900/60 via-purple-900/40 to-slate-950 border-t border-slate-800">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Ready to transform your workflow execution?</h2>
+                <p class="mt-4 text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+                    Join thousands of developers and teams automating their core business operations today.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#pricing" class="px-8 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base shadow-lg shadow-indigo-600/30 transition-all">
+                        Get Started Free Now
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+                <!-- Column 1: Brand Info -->
+                <div class="col-span-2">
+                    <a href="#" class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-bolt text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">Aura<span class="text-indigo-500">Flow</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm mb-6">
+                        Next-generation AI workflow automation platform designed for modern product teams, engineers, and scaling businesses.
+                    </p>
+                    <div class="flex items-center gap-4 text-slate-400">
+                        <a href="#" class="hover:text-indigo-400 transition-colors" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                        <a href="#" class="hover:text-indigo-400 transition-colors" aria-label="GitHub"><i class="fa-brands fa-github text-lg"></i></a>
+                        <a href="#" class="hover:text-indigo-400 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                        <a href="#" class="hover:text-indigo-400 transition-colors" aria-label="Discord"><i class="fa-brands fa-discord text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Product -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Product</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#how-it-works" class="hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Changelog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Company -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Company</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press Kit</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Legal -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Legal</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2026 AuraFlow Technologies Inc. All rights reserved.</p>
+                <p class="text-slate-500">Built for OASIS INFOBYTE Internship Task 1.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Minimal Inline JavaScript for Responsive Mobile Menu -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
